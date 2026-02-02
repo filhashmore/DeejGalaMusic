@@ -44,8 +44,23 @@ export function Navigation() {
               href={siteConfig.social.spotify}
               target="_blank"
               rel="noopener noreferrer"
-              className="neon-border-cyan px-5 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-cyan-500/10"
-              style={{ color: 'var(--neon-cyan)' }}
+              className="px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300"
+              style={{
+                color: 'var(--neon-cyan)',
+                background: 'linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(0, 245, 255, 0.05) 50%, rgba(0, 245, 255, 0.1) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(0, 245, 255, 0.3)',
+                boxShadow: '0 4px 16px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 6px 24px rgba(0, 245, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.borderColor = 'rgba(0, 245, 255, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 245, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(0, 245, 255, 0.3)';
+              }}
             >
               Listen Now
             </a>
@@ -54,7 +69,14 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-cyan-400 transition-colors"
+            className="md:hidden text-white hover:text-cyan-400 transition-all duration-300 p-2 rounded-xl"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

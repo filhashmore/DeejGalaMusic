@@ -2,9 +2,31 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Play } from 'lucide-react';
 import { siteConfig } from '../config/site-config';
 import { useParallax } from '../hooks/useScrollAnimation';
+import { useMemo } from 'react';
 
 export function Hero() {
   const parallaxOffset = useParallax(0.3);
+
+  // Different parallax speeds for layered depth effect
+  const parallaxSlow = useParallax(0.08);    // Distant particles - barely move
+  const parallaxMedium = useParallax(0.15);  // Mid-distance
+  const parallaxReverse = useParallax(-0.05); // Push-pull effect - moves opposite
+
+  // Generate stable particle configs once
+  const particles = useMemo(() => {
+    return [...Array(25)].map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: 1 + Math.random() * 2.5,
+      layer: i % 3, // 0 = slow/far, 1 = medium, 2 = reverse/close
+      duration: 6 + Math.random() * 6,
+      delay: Math.random() * 5,
+      driftX: (Math.random() - 0.5) * 40,
+      driftY: -30 - Math.random() * 50,
+      color: i % 4 === 0 ? '#ff00ff' : '#00f5ff',
+    }));
+  }, []);
 
   return (
     <section
@@ -72,20 +94,25 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-gray-400 text-base md:text-lg tracking-[0.3em] uppercase mb-4"
+          className="text-gray-400 text-xs md:text-lg tracking-[0.15em] md:tracking-[0.3em] uppercase mb-4"
         >
           {siteConfig.artist.role}
         </motion.p>
 
         {/* Tagline */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-white text-lg md:text-xl max-w-xl mx-auto" style={{ marginBottom: '4rem' }}
+          className="max-w-md md:max-w-xl mx-auto px-4" style={{ marginBottom: '4rem' }}
         >
-          {siteConfig.artist.tagline}
-        </motion.p>
+          <p className="text-white text-base md:text-xl">
+            Welcome to the music of Deej Gala.
+          </p>
+          <p className="text-white text-base md:text-xl mt-1">
+            Cheers ✌️🌎
+          </p>
+        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
@@ -127,28 +154,102 @@ export function Hero() {
         </motion.a>
       </motion.div>
 
-      {/* Floating Particles - with parallax to match background scroll speed */}
+      {/* Floating Particles - Multi-layer parallax for depth */}
+      {/* Layer 0: Slow/Distant - barely moves, feels far away */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none overflow-hidden"
-        style={{ transform: `translateY(${parallaxOffset}px)` }}
+        className="absolute inset-0 z-5 pointer-events-none overflow-hidden"
+        style={{ transform: `translateY(${parallaxSlow}px)` }}
       >
-        {[...Array(15)].map((_, i) => (
+        {particles.filter(p => p.layer === 0).map((p) => (
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full"
+            key={`slow-${p.id}`}
+            className="absolute rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              backgroundColor: '#00f5ff',
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size * 0.7,
+              height: p.size * 0.7,
+              backgroundColor: p.color,
+              opacity: 0.3,
+              boxShadow: `0 0 ${p.size * 3}px ${p.color}40`,
             }}
             animate={{
-              y: [0, -80, 0],
-              opacity: [0.2, 0.5, 0.2],
+              y: [0, p.driftY * 0.5, p.driftY * 0.3, p.driftY * 0.7, 0],
+              x: [0, p.driftX * 0.3, p.driftX * 0.5, p.driftX * 0.2, 0],
+              opacity: [0.2, 0.4, 0.3, 0.5, 0.2],
+              scale: [1, 1.1, 0.95, 1.15, 1],
             }}
             transition={{
-              duration: 4 + Math.random() * 4,
+              duration: p.duration * 1.5,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: p.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Layer 1: Medium - moves with background */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none overflow-hidden"
+        style={{ transform: `translateY(${parallaxMedium}px)` }}
+      >
+        {particles.filter(p => p.layer === 1).map((p) => (
+          <motion.div
+            key={`med-${p.id}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size,
+              height: p.size,
+              backgroundColor: p.color,
+              boxShadow: `0 0 ${p.size * 4}px ${p.color}60`,
+            }}
+            animate={{
+              y: [0, p.driftY, p.driftY * 0.5, p.driftY * 0.8, 0],
+              x: [0, p.driftX * 0.5, p.driftX, p.driftX * 0.3, 0],
+              opacity: [0.3, 0.6, 0.4, 0.7, 0.3],
+              scale: [1, 1.2, 0.9, 1.3, 1],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Layer 2: Reverse/Close - moves opposite direction, feels close */}
+      <div
+        className="absolute inset-0 z-15 pointer-events-none overflow-hidden"
+        style={{ transform: `translateY(${parallaxReverse}px)` }}
+      >
+        {particles.filter(p => p.layer === 2).map((p) => (
+          <motion.div
+            key={`close-${p.id}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size * 1.3,
+              height: p.size * 1.3,
+              backgroundColor: p.color,
+              boxShadow: `0 0 ${p.size * 6}px ${p.color}80`,
+            }}
+            animate={{
+              y: [0, p.driftY * 0.7, p.driftY * 0.4, p.driftY, 0],
+              x: [0, p.driftX, p.driftX * 0.6, p.driftX * 0.8, 0],
+              opacity: [0.4, 0.7, 0.5, 0.8, 0.4],
+              scale: [1, 1.3, 1.1, 1.4, 1],
+            }}
+            transition={{
+              duration: p.duration * 0.8,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: "easeInOut",
             }}
           />
         ))}
