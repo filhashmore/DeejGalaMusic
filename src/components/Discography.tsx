@@ -12,7 +12,7 @@ export function Discography() {
   ];
 
   return (
-    <section id="music" className="relative py-28 md:py-36 overflow-hidden">
+    <section id="music" className="relative overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '8rem' }}>
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -34,7 +34,7 @@ export function Discography() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center" style={{ marginBottom: '5rem' }}
         >
           <span
             className="section-label block"

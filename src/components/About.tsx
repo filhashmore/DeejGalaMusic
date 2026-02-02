@@ -52,6 +52,7 @@ export function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className=""
           >
             {/* Section Label */}
             <span className="section-label block" style={{ color: 'var(--neon-cyan)' }}>
@@ -66,12 +67,12 @@ export function About() {
             </h2>
 
             {/* Bio */}
-            <p className="text-gray-400 text-lg leading-relaxed mb-8 whitespace-pre-line">
+            <p className="text-gray-400 text-lg leading-relaxed whitespace-pre-line">
               {siteConfig.artist.bio}
             </p>
 
             {/* Feature Badges */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3" style={{ marginTop: '1.5rem' }}>
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.label}

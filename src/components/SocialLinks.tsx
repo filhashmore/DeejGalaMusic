@@ -34,7 +34,7 @@ export function SocialLinks() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section id="connect" className="relative pt-28 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="connect" className="relative overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '6rem' }}>
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -62,7 +62,7 @@ export function SocialLinks() {
           <h2 className="section-title mb-4">
             Stay in <span className="text-gradient">Touch</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-xl mx-auto mb-12">
+          <p className="text-gray-400 text-lg max-w-xl mx-auto" style={{ marginBottom: '4rem' }}>
             Follow along for new releases, behind-the-scenes content, and updates on the journey.
           </p>
         </motion.div>
@@ -105,7 +105,7 @@ export function SocialLinks() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-gray-500 text-sm mt-12"
+          className="text-gray-500 text-sm" style={{ marginTop: '4rem' }}
         >
           {siteConfig.contact.bookingNote}
         </motion.p>
