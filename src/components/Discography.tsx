@@ -12,7 +12,7 @@ export function Discography() {
   ];
 
   return (
-    <section id="music" className="relative overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '8rem' }}>
+    <section id="music" className="relative overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '8rem' }}>
       {/* Background */}
       <div
         className="absolute inset-0"

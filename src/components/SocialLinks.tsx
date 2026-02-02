@@ -34,7 +34,7 @@ export function SocialLinks() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section id="connect" className="relative overflow-hidden" style={{ paddingTop: '10rem', paddingBottom: '6rem' }}>
+    <section id="connect" className="relative overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
       {/* Background */}
       <div
         className="absolute inset-0"
