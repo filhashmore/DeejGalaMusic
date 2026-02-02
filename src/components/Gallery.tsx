@@ -11,7 +11,12 @@ export function Gallery() {
   return (
     <section id="gallery" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background-secondary to-background" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary), var(--bg-primary))'
+        }}
+      />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
@@ -21,13 +26,13 @@ export function Gallery() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-neon-purple text-sm tracking-[0.3em] uppercase mb-4 block">
+          <span className="section-label block" style={{ color: 'var(--neon-purple)' }}>
             Visuals
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="section-title mb-4">
             The <span className="text-gradient">Gallery</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A visual journey through the world of Deej Gala.
           </p>
         </motion.div>
@@ -37,28 +42,35 @@ export function Gallery() {
           {siteConfig.images.gallery.map((image, index) => (
             <motion.div
               key={image}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={isVisible ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="group relative cursor-pointer"
+              className="gallery-image group"
               onClick={() => setSelectedImage(image)}
             >
-              <div className="relative overflow-hidden rounded-xl aspect-[4/5]">
+              <div className="relative aspect-[4/5]">
                 <img
                   src={image}
                   alt={`Deej Gala visual ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Zoom Icon */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-16 rounded-full bg-neon-cyan/20 backdrop-blur-sm flex items-center justify-center border border-neon-cyan/50">
-                    <ZoomIn className="w-8 h-8 text-neon-cyan" />
+                {/* Hover Overlay */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                  style={{
+                    background: 'linear-gradient(to top, rgba(10,10,15,0.9) 0%, rgba(10,10,15,0.3) 50%, transparent 100%)'
+                  }}
+                >
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center backdrop-blur-sm"
+                    style={{
+                      backgroundColor: 'rgba(0, 245, 255, 0.2)',
+                      border: '1px solid rgba(0, 245, 255, 0.5)'
+                    }}
+                  >
+                    <ZoomIn className="w-6 h-6" style={{ color: 'var(--neon-cyan)' }} />
                   </div>
                 </div>
-                {/* Glow Border on Hover */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-cyan/50 rounded-xl transition-colors duration-300 pointer-events-none" />
               </div>
             </motion.div>
           ))}
@@ -72,26 +84,34 @@ export function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/95 backdrop-blur-xl"
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            style={{
+              backgroundColor: 'rgba(10, 10, 15, 0.95)',
+              backdropFilter: 'blur(16px)'
+            }}
             onClick={() => setSelectedImage(null)}
           >
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-neon-cyan/20 transition-colors"
+              className="absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}
               onClick={() => setSelectedImage(null)}
             >
-              <X className="w-6 h-6 text-text-primary" />
+              <X className="w-6 h-6 text-white" />
             </motion.button>
 
             <motion.img
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+              exit={{ opacity: 0, scale: 0.9 }}
               src={selectedImage}
               alt="Gallery full view"
-              className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              className="max-w-full max-h-[85vh] object-contain rounded-xl"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>

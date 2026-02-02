@@ -4,9 +4,9 @@ import { siteConfig } from '../config/site-config';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const features = [
-  { icon: Mic2, label: 'Singer', color: 'neon-cyan' },
-  { icon: Music, label: 'Songwriter', color: 'neon-magenta' },
-  { icon: Headphones, label: 'Producer', color: 'neon-purple' },
+  { icon: Mic2, label: 'Singer', color: '#00f5ff', bgColor: 'rgba(0, 245, 255, 0.1)' },
+  { icon: Music, label: 'Songwriter', color: '#ff00ff', bgColor: 'rgba(255, 0, 255, 0.1)' },
+  { icon: Headphones, label: 'Producer', color: '#9d4edd', bgColor: 'rgba(157, 78, 221, 0.1)' },
 ];
 
 export function About() {
@@ -14,11 +14,16 @@ export function About() {
 
   return (
     <section id="about" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background-secondary to-background" />
+      {/* Background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary), var(--bg-primary))'
+        }}
+      />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -26,18 +31,20 @@ export function About() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="gallery-image">
               <img
                 src={siteConfig.images.about}
                 alt="Deej Gala"
-                className="w-full h-auto rounded-lg"
+                className="w-full h-auto"
               />
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-neon-cyan/20 via-transparent to-neon-magenta/20 pointer-events-none" />
+              {/* Gradient overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,245,255,0.1) 0%, transparent 50%, rgba(255,0,255,0.1) 100%)'
+                }}
+              />
             </div>
-            {/* Decorative Border */}
-            <div className="absolute -inset-2 border border-neon-cyan/30 rounded-lg -z-10" />
-            <div className="absolute -inset-4 border border-neon-magenta/20 rounded-lg -z-20" />
           </motion.div>
 
           {/* Content */}
@@ -47,44 +54,41 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Section Label */}
-            <span className="text-neon-cyan text-sm tracking-[0.3em] uppercase mb-4 block">
+            <span className="section-label block" style={{ color: 'var(--neon-cyan)' }}>
               About
             </span>
 
             {/* Heading */}
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="section-title mb-6">
               The Story Behind
               <br />
               <span className="text-gradient">The Sound</span>
             </h2>
 
             {/* Bio */}
-            <p className="text-text-secondary text-lg leading-relaxed mb-8 whitespace-pre-line">
+            <p className="text-gray-400 text-lg leading-relaxed mb-8 whitespace-pre-line">
               {siteConfig.artist.bio}
             </p>
 
-            {/* Feature Icons */}
-            <div className="flex flex-wrap gap-6">
+            {/* Feature Badges */}
+            <div className="flex flex-wrap gap-3">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-3 glass px-4 py-3 rounded-lg"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl"
+                  style={{
+                    backgroundColor: feature.bgColor,
+                    border: `1px solid ${feature.color}40`,
+                  }}
                 >
                   <feature.icon
-                    className={`w-5 h-5 text-${feature.color}`}
-                    style={{
-                      color:
-                        feature.color === 'neon-cyan'
-                          ? '#00f5ff'
-                          : feature.color === 'neon-magenta'
-                          ? '#ff00ff'
-                          : '#9d4edd',
-                    }}
+                    className="w-5 h-5"
+                    style={{ color: feature.color }}
                   />
-                  <span className="text-text-primary text-sm">{feature.label}</span>
+                  <span className="text-white font-medium">{feature.label}</span>
                 </motion.div>
               ))}
             </div>

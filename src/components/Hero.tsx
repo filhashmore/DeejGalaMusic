@@ -21,13 +21,23 @@ export function Hero() {
           alt="Deej Gala"
           className="w-full h-full object-cover object-center scale-110"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+        {/* Gradient Overlays */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(10,10,15,0.5) 0%, rgba(10,10,15,0.3) 50%, rgba(10,10,15,1) 100%)'
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to right, rgba(10,10,15,0.7) 0%, transparent 50%, rgba(10,10,15,0.7) 100%)'
+          }}
+        />
       </div>
 
       {/* Scanline Effect */}
-      <div className="absolute inset-0 z-10 pointer-events-none opacity-20">
+      <div className="absolute inset-0 z-10 pointer-events-none opacity-30">
         <div
           className="absolute inset-0"
           style={{
@@ -50,10 +60,10 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="font-display font-bold text-6xl md:text-8xl lg:text-9xl tracking-wider mb-4">
-            <span className="neon-text">DEEJ</span>
+          <h1 className="font-display font-bold text-6xl md:text-8xl lg:text-9xl tracking-wider mb-6">
+            <span className="neon-text-cyan">DEEJ</span>
             <br />
-            <span className="text-neon-magenta neon-text-magenta">GALA</span>
+            <span className="neon-text-magenta">GALA</span>
           </h1>
         </motion.div>
 
@@ -62,7 +72,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-text-secondary text-lg md:text-xl tracking-[0.3em] uppercase mb-6"
+          className="text-gray-400 text-base md:text-lg tracking-[0.3em] uppercase mb-4"
         >
           {siteConfig.artist.role}
         </motion.p>
@@ -72,7 +82,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-text-primary text-xl md:text-2xl mb-10"
+          className="text-white text-lg md:text-xl mb-10 max-w-xl mx-auto"
         >
           {siteConfig.artist.tagline}
         </motion.p>
@@ -88,15 +98,12 @@ export function Hero() {
             href={siteConfig.social.spotify}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-8 py-4 bg-neon-cyan text-background font-semibold rounded-full hover:shadow-neon-cyan transition-all duration-300"
+            className="btn-primary"
           >
-            <Play className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" />
+            <Play className="w-5 h-5" fill="currentColor" />
             Listen on Spotify
           </a>
-          <a
-            href="#music"
-            className="px-8 py-4 border border-text-secondary text-text-primary rounded-full hover:border-neon-magenta hover:text-neon-magenta transition-all duration-300"
-          >
+          <a href="#music" className="btn-secondary">
             Explore Music
           </a>
         </motion.div>
@@ -111,33 +118,34 @@ export function Hero() {
       >
         <motion.a
           href="#about"
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center text-text-secondary hover:text-neon-cyan transition-colors"
+          className="flex flex-col items-center text-gray-400 hover:text-cyan-400 transition-colors"
         >
           <span className="text-xs tracking-widest uppercase mb-2">Scroll</span>
-          <ChevronDown className="w-6 h-6" />
+          <ChevronDown className="w-5 h-5" />
         </motion.a>
       </motion.div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-neon-cyan rounded-full opacity-40"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              backgroundColor: '#00f5ff',
             }}
             animate={{
-              y: [0, -100, 0],
-              opacity: [0.2, 0.6, 0.2],
+              y: [0, -80, 0],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
-              duration: 5 + Math.random() * 5,
+              duration: 4 + Math.random() * 4,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: Math.random() * 4,
             }}
           />
         ))}

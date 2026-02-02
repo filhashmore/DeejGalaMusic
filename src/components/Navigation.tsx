@@ -23,27 +23,20 @@ export function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'glass py-3' : 'bg-transparent py-6'
+          isScrolled ? 'nav-glass py-4' : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
-            className="font-display font-bold text-xl tracking-wider hover:text-neon-cyan transition-colors"
-          >
-            <span className="neon-text">DEEJ</span>
-            <span className="text-neon-magenta ml-1">GALA</span>
+          <a href="#home" className="font-display font-bold text-xl tracking-wider">
+            <span className="neon-text-cyan">DEEJ</span>
+            <span className="neon-text-magenta ml-1">GALA</span>
           </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {siteConfig.navigation.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-text-secondary hover:text-neon-cyan transition-all duration-300 text-sm tracking-wide uppercase"
-              >
+              <a key={item.href} href={item.href} className="nav-link">
                 {item.label}
               </a>
             ))}
@@ -51,7 +44,8 @@ export function Navigation() {
               href={siteConfig.social.spotify}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 border border-neon-cyan text-neon-cyan rounded hover:bg-neon-cyan hover:text-background transition-all duration-300 text-sm tracking-wide uppercase neon-border"
+              className="neon-border-cyan px-5 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-cyan-500/10"
+              style={{ color: 'var(--neon-cyan)' }}
             >
               Listen Now
             </a>
@@ -60,7 +54,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-text-primary hover:text-neon-cyan transition-colors"
+            className="md:hidden text-white hover:text-cyan-400 transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -74,9 +68,13 @@ export function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-lg pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 pt-24 px-6 md:hidden"
+            style={{
+              backgroundColor: 'rgba(10, 10, 15, 0.98)',
+              backdropFilter: 'blur(16px)',
+            }}
           >
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-8">
               {siteConfig.navigation.map((item, index) => (
                 <motion.a
                   key={item.href}
@@ -85,7 +83,7 @@ export function Navigation() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-2xl font-display tracking-wider hover:text-neon-cyan transition-colors"
+                  className="text-2xl font-display tracking-wider text-white hover:text-cyan-400 transition-colors"
                 >
                   {item.label}
                 </motion.a>
@@ -97,7 +95,7 @@ export function Navigation() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="mt-4 px-8 py-3 border border-neon-cyan text-neon-cyan rounded hover:bg-neon-cyan hover:text-background transition-all duration-300 tracking-wide uppercase neon-border"
+                className="btn-primary mt-4"
               >
                 Listen on Spotify
               </motion.a>
