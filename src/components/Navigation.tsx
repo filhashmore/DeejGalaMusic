@@ -22,10 +22,14 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'nav-glass py-4' : 'bg-transparent py-6'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+          isScrolled ? 'nav-glass py-4' : 'py-6'
         }`}
-        style={{ paddingTop: 'max(env(safe-area-inset-top), 0px)' }}
+        style={{
+          paddingTop: 'env(safe-area-inset-top, 0px)',
+          borderBottom: '1px solid transparent',
+          background: isScrolled ? undefined : 'transparent',
+        }}
       >
         <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
           {/* Logo */}
