@@ -12,7 +12,7 @@ export function Discography() {
   ];
 
   return (
-    <section id="music" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="music" className="relative py-28 md:py-36 overflow-hidden">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -55,9 +55,9 @@ export function Discography() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
+          style={{ marginBottom: '5rem' }}
         >
-          <div className="max-w-3xl mx-auto glass-card-strong p-4 md:p-6">
+          <div className="max-w-4xl mx-auto glass-card-strong p-6 md:p-8">
             <iframe
               src={`https://open.spotify.com/embed/artist/${siteConfig.spotifyEmbed.artistId}?utm_source=generator&theme=0`}
               width="100%"
@@ -71,7 +71,7 @@ export function Discography() {
         </motion.div>
 
         {/* Releases Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {allReleases.map((release, index) => {
             const isPopular = 'popular' in release && release.popular;
             return (

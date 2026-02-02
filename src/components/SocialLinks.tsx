@@ -34,7 +34,7 @@ export function SocialLinks() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section id="connect" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="connect" className="relative pt-28 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       {/* Background */}
       <div
         className="absolute inset-0"

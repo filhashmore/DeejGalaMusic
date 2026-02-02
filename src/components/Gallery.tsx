@@ -9,7 +9,7 @@ export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="gallery" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="gallery" className="relative py-28 md:py-40 overflow-hidden">
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -24,7 +24,7 @@ export function Gallery() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="section-label block" style={{ color: 'var(--neon-purple)' }}>
             Visuals
@@ -38,7 +38,7 @@ export function Gallery() {
         </motion.div>
 
         {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {siteConfig.images.gallery.map((image, index) => (
             <motion.div
               key={image}
