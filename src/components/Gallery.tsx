@@ -9,7 +9,7 @@ export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="gallery" className="relative overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '8rem' }}>
+    <section id="gallery" className="relative overflow-hidden" style={{ paddingTop: '0', paddingBottom: '4rem' }}>
       {/* Background */}
       <div
         className="absolute inset-0"
