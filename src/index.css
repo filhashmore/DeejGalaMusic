@@ -375,8 +375,17 @@ body {
    SCROLLBAR
    ============================================ */
 
+/* Force scrollbar visibility */
+html {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-cyan) var(--bg-primary);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -390,6 +399,17 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+}
+
+/* Mobile-specific: ensure scrollbar stays visible longer */
+@media (max-width: 768px) {
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 }
 
 /* ============================================
