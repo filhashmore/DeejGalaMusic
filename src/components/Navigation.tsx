@@ -47,7 +47,7 @@ export function Navigation() {
               rel="noopener noreferrer"
               className="rounded-xl text-sm font-medium transition-all duration-300"
               style={{
-                padding: '0.875rem 1.75rem',
+                padding: '0.625rem 1.25rem',
                 color: 'var(--neon-cyan)',
                 background: 'linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(0, 245, 255, 0.05) 50%, rgba(0, 245, 255, 0.1) 100%)',
                 backdropFilter: 'blur(12px)',
