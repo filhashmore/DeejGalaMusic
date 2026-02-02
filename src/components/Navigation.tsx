@@ -45,7 +45,7 @@ export function Navigation() {
               href={siteConfig.social.spotify}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300"
+              className="px-8 py-3 rounded-xl text-sm font-medium transition-all duration-300"
               style={{
                 color: 'var(--neon-cyan)',
                 background: 'linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(0, 245, 255, 0.05) 50%, rgba(0, 245, 255, 0.1) 100%)',
