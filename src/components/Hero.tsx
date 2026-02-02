@@ -127,45 +127,31 @@ export function Hero() {
         </motion.a>
       </motion.div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => {
-          const size = 1 + Math.random() * 2;
-          const startX = Math.random() * 100;
-          const startY = Math.random() * 100;
-          const duration = 12 + Math.random() * 8;
-          const delay = Math.random() * 8;
-          const driftX = (Math.random() - 0.5) * 30;
-
-          return (
-            <motion.div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                left: `${startX}%`,
-                top: `${startY}%`,
-                width: size,
-                height: size,
-                backgroundColor: i % 3 === 0 ? '#ff00ff' : '#00f5ff',
-                boxShadow: i % 3 === 0
-                  ? '0 0 6px rgba(255, 0, 255, 0.6)'
-                  : '0 0 6px rgba(0, 245, 255, 0.6)',
-              }}
-              animate={{
-                y: [0, -40, -20, -50, 0],
-                x: [0, driftX * 0.5, driftX, driftX * 0.3, 0],
-                opacity: [0.15, 0.4, 0.25, 0.5, 0.15],
-                scale: [1, 1.2, 0.9, 1.1, 1],
-              }}
-              transition={{
-                duration: duration,
-                repeat: Infinity,
-                delay: delay,
-                ease: "easeInOut",
-              }}
-            />
-          );
-        })}
+      {/* Floating Particles - with parallax to match background scroll speed */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none overflow-hidden"
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
+      >
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              backgroundColor: '#00f5ff',
+            }}
+            animate={{
+              y: [0, -80, 0],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 4,
+            }}
+          />
+        ))}
       </div>
     </section>
   );
