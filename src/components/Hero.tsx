@@ -53,7 +53,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-20 text-center px-8 max-w-4xl mx-auto">
         {/* Artist Name */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

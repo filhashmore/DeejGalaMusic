@@ -49,7 +49,7 @@ export function SocialLinks() {
         />
       </div>
 
-      <div ref={ref} className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div ref={ref} className="relative z-10 max-w-4xl mx-auto px-8 text-center">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

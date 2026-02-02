@@ -26,7 +26,7 @@ export function Navigation() {
           isScrolled ? 'nav-glass py-4' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
           {/* Logo */}
           <a href="#home" className="font-display font-bold text-xl tracking-wider">
             <span className="neon-text-cyan">DEEJ</span>
@@ -68,7 +68,7 @@ export function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 pt-24 px-8 md:hidden"
             style={{
               backgroundColor: 'rgba(10, 10, 15, 0.98)',
               backdropFilter: 'blur(16px)',

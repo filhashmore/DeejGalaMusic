@@ -22,7 +22,7 @@ export function About() {
         }}
       />
 
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image */}
           <motion.div

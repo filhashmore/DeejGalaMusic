@@ -18,7 +18,7 @@ export function Gallery() {
         }}
       />
 
-      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

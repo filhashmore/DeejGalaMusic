@@ -9,7 +9,7 @@ export function Footer() {
         borderTop: '1px solid rgba(255,255,255,0.05)'
       }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo */}
           <div className="font-display font-bold text-lg tracking-wider">
