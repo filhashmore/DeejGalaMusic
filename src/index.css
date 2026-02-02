@@ -264,12 +264,12 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.75rem;
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  min-height: 160px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   box-shadow:

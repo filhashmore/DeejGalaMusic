@@ -72,24 +72,29 @@ export function About() {
             </p>
 
             {/* Feature Badges */}
-            <div className="flex flex-wrap gap-3" style={{ marginTop: '1.5rem' }}>
+            <div className="flex flex-wrap gap-4" style={{ marginTop: '1.5rem' }}>
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-3 px-5 py-3 rounded-xl"
+                  className="flex items-center rounded-xl"
                   style={{
-                    backgroundColor: feature.bgColor,
-                    border: `1px solid ${feature.color}40`,
+                    padding: '0.75rem 1.25rem',
+                    gap: '0.75rem',
+                    background: `linear-gradient(135deg, ${feature.bgColor} 0%, rgba(255,255,255,0.02) 100%)`,
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    border: `1px solid ${feature.color}50`,
+                    boxShadow: `0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)`,
                   }}
                 >
                   <feature.icon
-                    className="w-5 h-5"
+                    className="w-5 h-5 flex-shrink-0"
                     style={{ color: feature.color }}
                   />
-                  <span className="text-white font-medium">{feature.label}</span>
+                  <span className="text-white font-medium text-sm">{feature.label}</span>
                 </motion.div>
               ))}
             </div>

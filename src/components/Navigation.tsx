@@ -31,7 +31,7 @@ export function Navigation() {
           background: isScrolled ? undefined : 'transparent',
         }}
       >
-        <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between" style={{ padding: '0 0.25rem' }}>
           {/* Logo */}
           <a href="#home" className="font-display font-bold text-xl tracking-wider">
             <span className="neon-text-cyan">DEEJ</span>
@@ -75,8 +75,9 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-cyan-400 transition-all duration-300 p-2 rounded-xl"
+            className="md:hidden text-white hover:text-cyan-400 transition-all duration-300 rounded-xl"
             style={{
+              padding: '0.5rem',
               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%)',
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
@@ -84,7 +85,7 @@ export function Navigation() {
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </motion.nav>
@@ -93,25 +94,49 @@ export function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 pt-24 px-8 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 pt-20 px-6 md:hidden"
             style={{
-              backgroundColor: 'rgba(10, 10, 15, 0.98)',
-              backdropFilter: 'blur(16px)',
+              background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.85) 0%, rgba(15, 15, 25, 0.9) 50%, rgba(10, 10, 15, 0.95) 100%)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
             }}
           >
-            <div className="flex flex-col items-center gap-8">
+            {/* Decorative glow */}
+            <div
+              className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%)',
+              }}
+            />
+            <div
+              className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle, rgba(255, 0, 255, 0.06) 0%, transparent 70%)',
+              }}
+            />
+
+            <div className="relative flex flex-col items-center gap-6 mt-4">
               {siteConfig.navigation.map((item, index) => (
                 <motion.a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-2xl font-display tracking-wider text-white hover:text-cyan-400 transition-colors"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: index * 0.08, duration: 0.3 }}
+                  className="text-xl font-display tracking-wider text-white transition-all duration-300"
+                  style={{
+                    padding: '0.75rem 2rem',
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                    minWidth: '200px',
+                    textAlign: 'center',
+                  }}
                 >
                   {item.label}
                 </motion.a>

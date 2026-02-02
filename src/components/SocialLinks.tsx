@@ -68,34 +68,47 @@ export function SocialLinks() {
         </motion.div>
 
         {/* Social Links Grid */}
-        <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
           {socials.map((social, index) => (
             <motion.a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              className="social-card group"
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              className="group"
               style={{
+                display: 'flex',
                 flexDirection: 'column',
+                alignItems: 'center',
                 textAlign: 'center',
-                padding: '1.5rem',
+                padding: '1rem 0.75rem',
+                borderRadius: '12px',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
               }}
             >
               <div
-                className="social-icon mx-auto mb-3"
-                style={{ backgroundColor: social.bgColor }}
+                className="flex items-center justify-center rounded-lg mb-2"
+                style={{
+                  width: '2.5rem',
+                  height: '2.5rem',
+                  backgroundColor: social.bgColor,
+                }}
               >
                 <social.icon
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   style={{ color: social.color }}
                 />
               </div>
-              <p className="text-white font-semibold text-sm">{social.name}</p>
-              <p className="text-gray-500 text-xs mt-1">{social.handle}</p>
+              <p className="text-white font-medium text-xs">{social.name}</p>
             </motion.a>
           ))}
         </div>

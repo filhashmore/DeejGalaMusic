@@ -86,17 +86,17 @@ export function Discography() {
                 className={`track-card group ${isPopular ? 'track-card-popular' : ''}`}
               >
                 {/* Header Row */}
-                <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center justify-between mb-3">
                   <span
                     className={`badge ${release.isEP ? 'badge-purple' : 'badge-cyan'}`}
-                    style={{ padding: '0.4rem 0.85rem', fontSize: '0.75rem', fontWeight: '600' }}
+                    style={{ padding: '0.3rem 0.7rem', fontSize: '0.7rem', fontWeight: '600' }}
                   >
                     {release.isEP ? 'EP' : 'Single'}
                   </span>
                   {isPopular && (
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1">
                       <Star
-                        className="w-4 h-4"
+                        className="w-3.5 h-3.5"
                         style={{ color: 'var(--neon-magenta)' }}
                         fill="var(--neon-magenta)"
                       />
@@ -112,41 +112,41 @@ export function Discography() {
 
                 {/* Title */}
                 <h3
-                  className="font-display text-xl font-semibold mb-2 transition-colors group-hover:text-cyan-400"
+                  className="font-display text-lg font-semibold mb-1 transition-colors group-hover:text-cyan-400"
                   style={{ color: 'var(--text-primary)' }}
                 >
                   {release.title}
                 </h3>
 
                 {'subtitle' in release && release.subtitle && (
-                  <p className="text-gray-500 text-sm mb-4">{release.subtitle}</p>
+                  <p className="text-gray-500 text-xs mb-2">{release.subtitle}</p>
                 )}
 
                 {/* Meta */}
-                <div className="flex items-center gap-4 text-gray-500 text-sm mt-auto pt-4">
-                  <span className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-3 text-gray-500 text-xs mt-auto pt-2">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
                     {release.year}
                   </span>
                   {'duration' in release && release.duration && (
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" />
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
                       {release.duration}
                     </span>
                   )}
                 </div>
 
                 {/* Play Indicator */}
-                <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg"
+                    className="w-9 h-9 rounded-full flex items-center justify-center shadow-lg"
                     style={{
                       backgroundColor: 'var(--neon-cyan)',
                       boxShadow: '0 4px 15px rgba(0, 245, 255, 0.4)'
                     }}
                   >
                     <Play
-                      className="w-5 h-5 ml-0.5"
+                      className="w-4 h-4 ml-0.5"
                       style={{ color: 'var(--bg-primary)' }}
                       fill="var(--bg-primary)"
                     />
