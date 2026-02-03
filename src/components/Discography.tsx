@@ -1,15 +1,18 @@
-import { motion } from 'framer-motion';
-import { Play, Star, Calendar, Clock } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Star, Calendar, Clock, ChevronDown, Music } from 'lucide-react';
 import { siteConfig } from '../config/site-config';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export function Discography() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const [expandedEP, setExpandedEP] = useState<string | null>(null);
 
-  const allReleases = [
-    ...siteConfig.discography.singles.map((single) => ({ ...single, isEP: false })),
-    ...siteConfig.discography.ep.map((ep) => ({ ...ep, isEP: true })),
-  ];
+  const toggleEP = (title: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedEP(expandedEP === title ? null : title);
+  };
 
   return (
     <section id="music" className="relative overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
@@ -72,12 +75,13 @@ export function Discography() {
 
         {/* Releases Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {allReleases.map((release, index) => {
-            const isPopular = 'popular' in release && release.popular;
+          {/* Singles */}
+          {siteConfig.discography.singles.map((single, index) => {
+            const isPopular = single.popular;
             return (
               <motion.a
-                key={release.title}
-                href={release.spotifyUrl}
+                key={single.title}
+                href={single.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
@@ -88,10 +92,10 @@ export function Discography() {
                 {/* Header Row */}
                 <div className="flex items-center justify-between mb-3">
                   <span
-                    className={`badge ${release.isEP ? 'badge-purple' : 'badge-cyan'}`}
+                    className="badge badge-cyan"
                     style={{ padding: '0.3rem 0.7rem', fontSize: '0.7rem', fontWeight: '600' }}
                   >
-                    {release.isEP ? 'EP' : 'Single'}
+                    Single
                   </span>
                   {isPopular && (
                     <div className="flex items-center gap-1">
@@ -115,23 +119,23 @@ export function Discography() {
                   className="font-display text-lg font-semibold mb-1 transition-colors group-hover:text-cyan-400"
                   style={{ color: 'var(--text-primary)' }}
                 >
-                  {release.title}
+                  {single.title}
                 </h3>
 
-                {'subtitle' in release && release.subtitle && (
-                  <p className="text-gray-500 text-xs mb-2">{release.subtitle}</p>
+                {'subtitle' in single && single.subtitle && (
+                  <p className="text-gray-500 text-xs mb-2">{single.subtitle}</p>
                 )}
 
                 {/* Meta */}
                 <div className="flex items-center gap-3 text-gray-500 text-xs mt-auto pt-2">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
-                    {release.year}
+                    {single.year}
                   </span>
-                  {'duration' in release && release.duration && (
+                  {single.duration && (
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
-                      {release.duration}
+                      {single.duration}
                     </span>
                   )}
                 </div>
@@ -153,6 +157,130 @@ export function Discography() {
                   </div>
                 </div>
               </motion.a>
+            );
+          })}
+
+          {/* EPs with expandable track list */}
+          {siteConfig.discography.ep.map((ep, index) => {
+            const isExpanded = expandedEP === ep.title;
+            return (
+              <motion.div
+                key={ep.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.05 * (siteConfig.discography.singles.length + index) }}
+                className="track-card group"
+                style={{
+                  borderColor: 'rgba(157, 78, 221, 0.3)',
+                }}
+              >
+                {/* Header Row */}
+                <div className="flex items-center justify-between mb-3">
+                  <span
+                    className="badge badge-purple"
+                    style={{ padding: '0.3rem 0.7rem', fontSize: '0.7rem', fontWeight: '600' }}
+                  >
+                    EP
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {ep.tracks ? `${ep.tracks.length} tracks` : ''}
+                  </span>
+                </div>
+
+                {/* Title - clickable to Spotify */}
+                <a
+                  href={ep.spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display text-lg font-semibold mb-1 transition-colors hover:text-purple-400 block"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {ep.title}
+                </a>
+
+                {/* Meta */}
+                <div className="flex items-center gap-3 text-gray-500 text-xs pt-2">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {ep.year}
+                  </span>
+                  {ep.duration && (
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {ep.duration}
+                    </span>
+                  )}
+                </div>
+
+                {/* Expand button */}
+                {ep.tracks && ep.tracks.length > 0 && (
+                  <div
+                    onClick={() => setExpandedEP(isExpanded ? null : ep.title)}
+                    className="w-full mt-3 pt-3 flex items-center justify-center gap-2 text-xs font-medium transition-colors cursor-pointer hover:opacity-80"
+                    style={{
+                      borderTop: '1px solid rgba(157, 78, 221, 0.2)',
+                      color: isExpanded ? 'var(--neon-purple)' : 'var(--text-secondary)',
+                    }}
+                  >
+                    <span>{isExpanded ? 'Hide tracks' : 'View tracks'}</span>
+                    <ChevronDown
+                      className="w-4 h-4 transition-transform duration-300"
+                      style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                    />
+                  </div>
+                )}
+
+                {/* Expandable track list */}
+                {isExpanded && ep.tracks && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <div
+                      className="mt-3 pt-3 space-y-2"
+                      style={{ borderTop: '1px solid rgba(157, 78, 221, 0.2)' }}
+                    >
+                      {ep.tracks.map((track, trackIndex) => (
+                        <div
+                          key={track.title}
+                          className="flex items-center justify-between py-1.5 px-2 rounded-lg"
+                          style={{
+                            background: 'rgba(157, 78, 221, 0.05)',
+                          }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-gray-600 text-xs w-4">{trackIndex + 1}</span>
+                            <Music className="w-3 h-3" style={{ color: 'var(--neon-purple)', opacity: 0.6 }} />
+                            <span className="text-sm text-gray-300">{track.title}</span>
+                          </div>
+                          <span className="text-xs text-gray-500">{track.duration}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Play Indicator */}
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <a
+                    href={ep.spotifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full flex items-center justify-center shadow-lg"
+                    style={{
+                      backgroundColor: 'var(--neon-purple)',
+                      boxShadow: '0 4px 15px rgba(157, 78, 221, 0.4)'
+                    }}
+                  >
+                    <Play
+                      className="w-4 h-4 ml-0.5"
+                      style={{ color: 'var(--bg-primary)' }}
+                      fill="var(--bg-primary)"
+                    />
+                  </a>
+                </div>
+              </motion.div>
             );
           })}
         </div>

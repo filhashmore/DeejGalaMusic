@@ -26,7 +26,16 @@ With a DIY approach and a passion for authentic sound, Deej creates music that b
         title: "Baby Steps",
         year: 2019,
         type: "EP",
+        duration: "17:48",
         spotifyUrl: "https://open.spotify.com/album/24gXm2GDtQ2hsx30vCWdN5",
+        tracks: [
+          { title: "What Makes You Alive", duration: "2:47" },
+          { title: "Like a Wave", duration: "2:33" },
+          { title: "Excuses", duration: "2:53" },
+          { title: "Fly Away", duration: "3:09" },
+          { title: "Things Change", duration: "2:56" },
+          { title: "Compromise", duration: "3:27" },
+        ],
       },
     ],
     singles: [
@@ -68,16 +77,19 @@ With a DIY approach and a passion for authentic sound, Deej creates music that b
       {
         title: "Heart Drop",
         year: 2020,
+        duration: "2:59",
         spotifyUrl: "https://open.spotify.com/album/119K7gXIcHhh6LpCLgCkXz",
       },
       {
         title: "Our Time Is Through",
         year: 2020,
+        duration: "2:57",
         spotifyUrl: "https://open.spotify.com/track/03HfFaEpjJDxlIumndoSUL",
       },
       {
         title: "Waiting for You",
         year: 2020,
+        duration: "3:22",
         spotifyUrl: "https://open.spotify.com/track/2qts6DnO0iGncb5WMXoVup",
       },
     ],
