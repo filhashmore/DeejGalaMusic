@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Play, Star, Calendar, Clock, ChevronDown, Music } from 'lucide-react';
 import { siteConfig } from '../config/site-config';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -7,12 +7,6 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 export function Discography() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [expandedEP, setExpandedEP] = useState<string | null>(null);
-
-  const toggleEP = (title: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setExpandedEP(expandedEP === title ? null : title);
-  };
 
   return (
     <section id="music" className="relative overflow-hidden" style={{ paddingTop: '6rem', paddingBottom: '4rem' }}>
