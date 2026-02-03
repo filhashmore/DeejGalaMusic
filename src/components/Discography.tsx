@@ -7,8 +7,8 @@ export function Discography() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const allReleases = [
-    ...siteConfig.discography.ep.map((ep) => ({ ...ep, isEP: true })),
     ...siteConfig.discography.singles.map((single) => ({ ...single, isEP: false })),
+    ...siteConfig.discography.ep.map((ep) => ({ ...ep, isEP: true })),
   ];
 
   return (
@@ -77,7 +77,7 @@ export function Discography() {
             return (
               <motion.a
                 key={release.title}
-                href={siteConfig.social.spotify}
+                href={release.spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}

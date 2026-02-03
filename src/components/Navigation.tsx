@@ -18,15 +18,26 @@ export function Navigation() {
 
   return (
     <>
+      {/* iOS Safe Area Glass Buffer - content flows behind this */}
+      <div
+        className="fixed top-0 left-0 right-0 z-[60] pointer-events-none"
+        style={{
+          height: 'env(safe-area-inset-top, 0px)',
+          background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.85) 0%, rgba(10, 10, 15, 0.6) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+        }}
+      />
+
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-out ${
           isScrolled ? 'nav-glass py-4' : 'py-6'
         }`}
         style={{
-          paddingTop: 'env(safe-area-inset-top, 0px)',
+          top: 'env(safe-area-inset-top, 0px)',
           borderBottom: '1px solid transparent',
           background: isScrolled ? undefined : 'transparent',
         }}
@@ -97,16 +108,17 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 pt-20 px-6 md:hidden"
+            className="fixed inset-0 z-40 md:hidden"
             style={{
-              background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.85) 0%, rgba(15, 15, 25, 0.9) 50%, rgba(10, 10, 15, 0.95) 100%)',
+              paddingTop: 'calc(env(safe-area-inset-top, 0px) + 70px)',
+              background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.92) 0%, rgba(15, 15, 25, 0.95) 50%, rgba(10, 10, 15, 0.98) 100%)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
             }}
           >
             {/* Decorative glow */}
             <div
-              className="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none"
+              className="absolute top-1/3 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none"
               style={{
                 background: 'radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%)',
               }}
@@ -118,40 +130,44 @@ export function Navigation() {
               }}
             />
 
-            <div className="relative flex flex-col items-center gap-6 mt-4">
-              {siteConfig.navigation.map((item, index) => (
+            {/* Centered menu container */}
+            <div className="relative h-full flex flex-col items-center justify-center px-8" style={{ marginTop: '-40px' }}>
+              <div className="flex flex-col items-center w-full max-w-xs" style={{ gap: '1rem' }}>
+                {siteConfig.navigation.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: index * 0.06, duration: 0.25 }}
+                    className="w-full font-display font-medium tracking-wider text-white transition-all duration-300 active:scale-95"
+                    style={{
+                      padding: '1rem 1.5rem',
+                      borderRadius: '14px',
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                      textAlign: 'center',
+                      fontSize: '1.1rem',
+                    }}
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
                 <motion.a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: index * 0.08, duration: 0.3 }}
-                  className="text-xl font-display tracking-wider text-white transition-all duration-300"
-                  style={{
-                    padding: '0.75rem 2rem',
-                    borderRadius: '12px',
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-                    minWidth: '200px',
-                    textAlign: 'center',
-                  }}
+                  href={siteConfig.social.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="btn-primary w-full justify-center"
+                  style={{ marginTop: '0.5rem' }}
                 >
-                  {item.label}
+                  Listen on Spotify
                 </motion.a>
-              ))}
-              <motion.a
-                href={siteConfig.social.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="btn-primary mt-4"
-              >
-                Listen on Spotify
-              </motion.a>
+              </div>
             </div>
           </motion.div>
         )}

@@ -71,18 +71,18 @@ export function About() {
               {siteConfig.artist.bio}
             </p>
 
-            {/* Feature Badges */}
-            <div className="flex flex-wrap gap-4" style={{ marginTop: '1.5rem' }}>
+            {/* Feature Badges - fit all on one line on mobile */}
+            <div className="flex flex-nowrap gap-2 md:gap-4 overflow-x-auto" style={{ marginTop: '1.5rem' }}>
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center rounded-xl"
+                  className="flex items-center rounded-lg md:rounded-xl flex-shrink-0"
                   style={{
-                    padding: '0.75rem 1.25rem',
-                    gap: '0.75rem',
+                    padding: '0.5rem 0.75rem',
+                    gap: '0.4rem',
                     background: `linear-gradient(135deg, ${feature.bgColor} 0%, rgba(255,255,255,0.02) 100%)`,
                     backdropFilter: 'blur(8px)',
                     WebkitBackdropFilter: 'blur(8px)',
@@ -91,10 +91,10 @@ export function About() {
                   }}
                 >
                   <feature.icon
-                    className="w-5 h-5 flex-shrink-0"
+                    className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0"
                     style={{ color: feature.color }}
                   />
-                  <span className="text-white font-medium text-sm">{feature.label}</span>
+                  <span className="text-white font-medium text-xs md:text-sm whitespace-nowrap">{feature.label}</span>
                 </motion.div>
               ))}
             </div>
