@@ -21,12 +21,12 @@ const socials = [
     bgColor: 'rgba(228, 64, 95, 0.15)',
   },
   {
-    name: 'X / Twitter',
+    name: 'X',
     handle: '@deejgala',
     icon: Twitter,
     url: siteConfig.social.twitter,
-    color: '#1DA1F2',
-    bgColor: 'rgba(29, 161, 242, 0.15)',
+    color: '#000000',
+    bgColor: 'rgba(255, 255, 255, 0.12)',
   },
 ];
 

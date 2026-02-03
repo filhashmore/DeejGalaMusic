@@ -53,6 +53,7 @@ export function Gallery() {
                   src={image}
                   alt={`Deej Gala visual ${index + 1}`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 {/* Hover Overlay */}
                 <div

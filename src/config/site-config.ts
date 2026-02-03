@@ -93,7 +93,7 @@ With a DIY approach and a passion for authentic sound, Deej creates music that b
   },
 
   contact: {
-    email: "deejgala@email.com",
+    email: "deegjmusic@gmail.com",
     bookingNote: "For bookings and inquiries, reach out via Instagram DM or email.",
   },
 
