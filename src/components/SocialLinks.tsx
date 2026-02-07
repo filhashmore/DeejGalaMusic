@@ -15,17 +15,14 @@ const SpotifyLogo = ({ className, style }: { className?: string; style?: React.C
   </svg>
 );
 
-// SoundCloud logo - simple cloud
+// SoundCloud uses an image file instead of SVG - slightly larger to match other icons visually
 const SoundCloudLogo = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg
-    viewBox="0 0 24 24"
+  <img
+    src="/images/SoundCloud_Logo_01.png"
+    alt="SoundCloud"
     className={className}
-    style={style}
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path d="M6 17c-2.21 0-4-1.79-4-4 0-1.92 1.36-3.54 3.16-3.92C5.7 6.73 7.95 5 10.65 5c2.04 0 3.86 1.04 4.94 2.61.34-.08.69-.11 1.06-.11C19.07 7.5 21 9.43 21 12c0 2.57-1.93 4.5-4.35 4.5H6z"/>
-  </svg>
+    style={{ ...style, objectFit: 'contain', width: '2rem', height: '2rem' }}
+  />
 );
 
 // Official Instagram logo
