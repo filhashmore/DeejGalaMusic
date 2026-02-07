@@ -18,14 +18,16 @@ export function Navigation() {
 
   return (
     <>
-      {/* iOS Safe Area Glass Buffer - content flows behind this */}
+      {/* iOS Safe Area Glass Buffer - liquid glass effect for status bar area */}
       <div
         className="fixed top-0 left-0 right-0 z-[60] pointer-events-none"
         style={{
           height: 'env(safe-area-inset-top, 0px)',
-          background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.85) 0%, rgba(10, 10, 15, 0.6) 100%)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: 'linear-gradient(180deg, rgba(10, 10, 15, 0.75) 0%, rgba(15, 15, 25, 0.5) 50%, rgba(10, 10, 15, 0.3) 100%)',
+          backdropFilter: 'blur(24px) saturate(1.3)',
+          WebkitBackdropFilter: 'blur(24px) saturate(1.3)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+          boxShadow: '0 2px 16px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.03)',
         }}
       />
 

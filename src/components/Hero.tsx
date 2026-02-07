@@ -36,12 +36,20 @@ export function Hero() {
       {/* Background Image with Parallax */}
       <div
         className="absolute inset-0 z-0"
-        style={{ transform: `translateY(${parallaxOffset}px)` }}
+        style={{
+          transform: `translateY(${parallaxOffset}px)`,
+          // Extend image area above viewport for mobile to fill status bar region
+          top: '-env(safe-area-inset-top, 0px)',
+        }}
       >
         <img
           src={siteConfig.images.hero}
           alt="Deej Gala"
-          className="w-full h-full object-cover object-center scale-110"
+          className="w-full h-full object-cover scale-110"
+          style={{
+            // On mobile, position image higher to fill top of screen
+            objectPosition: 'center 15%',
+          }}
         />
         {/* Gradient Overlays */}
         <div

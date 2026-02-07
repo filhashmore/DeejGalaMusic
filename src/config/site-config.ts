@@ -10,6 +10,7 @@ With a DIY approach and a passion for authentic sound, Deej creates music that b
 
   social: {
     spotify: "https://open.spotify.com/artist/27M1k4nrHxBFTIvcoENcsV",
+    soundcloud: "https://on.soundcloud.com/sbhGU5YXnqNwWtMMdD",
     instagram: "https://www.instagram.com/deejgala",
     twitter: "https://x.com/deejgala",
   },
