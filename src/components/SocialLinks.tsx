@@ -144,9 +144,9 @@ export function SocialLinks() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 textAlign: 'center',
-                padding: '1.5rem 1rem',
+                padding: '1.25rem 1rem 1rem',
                 borderRadius: '20px',
                 background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)',
                 backdropFilter: 'blur(16px)',
@@ -168,7 +168,7 @@ export function SocialLinks() {
 
               {/* Icon container with brand gradient */}
               <div
-                className="relative flex items-center justify-center rounded-2xl mb-3 transition-all duration-300 group-hover:shadow-lg"
+                className="relative flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:shadow-lg"
                 style={{
                   width: '3.5rem',
                   height: '3.5rem',
@@ -182,10 +182,14 @@ export function SocialLinks() {
                 />
               </div>
 
-              {/* Platform name */}
+              {/* Platform name - positioned with flex-grow spacer for equal spacing */}
               <p
                 className="relative text-white font-semibold text-sm tracking-wide transition-colors duration-300"
-                style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}
+                style={{
+                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                  marginTop: 'auto',
+                  paddingTop: '0.75rem',
+                }}
               >
                 {social.name}
               </p>
