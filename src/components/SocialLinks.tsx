@@ -15,7 +15,7 @@ const SpotifyLogo = ({ className, style }: { className?: string; style?: React.C
   </svg>
 );
 
-// SoundCloud logo - simplified cloud with sound bars
+// SoundCloud logo - simple cloud
 const SoundCloudLogo = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg
     viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const SoundCloudLogo = ({ className, style }: { className?: string; style?: Reac
     fill="currentColor"
     aria-hidden="true"
   >
-    <path d="M7 17V9h1v8H7zm2.5 0V7h1v10h-1zm2.5 0V11h1v6h-1zm2.5 0V8h1v9h-1zM17 17V6h1v11h-1zM1 14v3h1v-3H1zm2.5-1v4h1v-4h-1zM6 12v5h1v-5H6zm14.5-3c-.3 0-.5.1-.8.2-.3-1.7-1.8-3-3.5-3-.5 0-1 .1-1.4.3-.2.1-.3.2-.3.4v8.9c0 .2.1.3.3.4h5.7c1.4 0 2.5-1.1 2.5-2.5s-1.1-2.7-2.5-2.7z"/>
+    <path d="M6 17c-2.21 0-4-1.79-4-4 0-1.92 1.36-3.54 3.16-3.92C5.7 6.73 7.95 5 10.65 5c2.04 0 3.86 1.04 4.94 2.61.34-.08.69-.11 1.06-.11C19.07 7.5 21 9.43 21 12c0 2.57-1.93 4.5-4.35 4.5H6z"/>
   </svg>
 );
 
